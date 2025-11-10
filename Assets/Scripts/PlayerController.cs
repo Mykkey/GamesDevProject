@@ -17,9 +17,14 @@ public class PlayerController : MonoBehaviour
 
     public Gun gun;
     private float lastShootTime;
+    public float fireRateMultiplier = 1;
+    public double fireRateDuration = 5;
+    public double fireRateReset = 0;
+    public bool fireRatePickupActive = false;
 
     private int lives = 3;
     public Damageable damageable;
+
 
     void Start()
     {
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleInputs();
         LookAtMouse();
+        CheckFireRatePickup();
     }
 
     void FixedUpdate()
@@ -46,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector2(moveX, moveY).normalized;
 
-        if (Input.GetMouseButton(0) && Time.time >= lastShootTime + gun.fireRate)
+        if (Input.GetMouseButton(0) && Time.time >= lastShootTime + (gun.fireRate * fireRateMultiplier))
         {
             gun.Fire();
             lastShootTime = Time.time;
@@ -60,6 +66,14 @@ public class PlayerController : MonoBehaviour
                                         moveDirection.y * moveSpeed * moveMultiplier);
     }
 
+    private void CheckFireRatePickup()
+    {
+        if (fireRatePickupActive == true && Time.time >= fireRateReset)
+        {
+            fireRateMultiplier += 0.5f;
+            fireRatePickupActive = false;
+        }
+    }
     void LookAtMouse()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

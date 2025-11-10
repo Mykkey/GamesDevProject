@@ -182,3 +182,4 @@ MonoBehaviour:
   rb: {fileID: 6218211214655215095}
   bulletSpeed: 1000
   bulletDamage: 0
+  damageMultiplier: 1

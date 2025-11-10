@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public float bulletSpeed = 1000f;
     public float bulletDamage;
+    public float damageMultiplier = 1;
 
     public void Initialize(Gun gunRef)
     {
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Damageable damageable = collision.gameObject.GetComponent<Damageable>();
-        if (damageable != null) damageable.TakeDamage(bulletDamage);
+        if (damageable != null) damageable.TakeDamage(bulletDamage * damageMultiplier);
         Destroy(this.gameObject);
     }
 }

@@ -1344,6 +1344,8 @@ MonoBehaviour:
   bulletRange: 0
   penetration: 0
   shootPosition: {fileID: 505829395}
+  damagePickupActive: 0
+  damagePickupTimeUntilReset: 0
 --- !u!114 &2131169302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1362,10 @@ MonoBehaviour:
   moveMultiplier: 1
   rb: {fileID: 2131169295}
   gun: {fileID: 2131169301}
+  fireRateMultiplier: 1
+  fireRateDuration: 5
+  fireRateReset: 0
+  fireRatePickupActive: 0
   damageable: {fileID: 2131169300}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

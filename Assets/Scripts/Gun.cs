@@ -22,6 +22,9 @@ public class Gun : MonoBehaviour
 
     public Transform shootPosition;
 
+    public bool damagePickupActive = false;
+    public double damagePickupTimeUntilReset = 0;
+
 
     void SetGunType(GunType g)
     {
@@ -90,6 +93,15 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        
+        CheckDamagePickup();
+    }
+
+    private void CheckDamagePickup()
+    {
+        if (damagePickupActive == true && Time.time >= damagePickupTimeUntilReset)
+        {
+            bullet.GetComponent<Bullet>().damageMultiplier -= 1;
+            damagePickupActive = false;
+        }
     }
 }
