@@ -7,7 +7,6 @@ public class RangedEnemyAttack : MonoBehaviour
 
     private double lastFireTime = 0;
     private double fireRate = 1.5f;
-    public Damageable damageable;
 
     private void Start()
     {
@@ -26,13 +25,5 @@ public class RangedEnemyAttack : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, GameObject.Find("Player").transform.position) < 15)
             Instantiate(bullet, transform.position, Quaternion.identity);
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            damageable.TakeDamage(5);
-        }
     }
 }

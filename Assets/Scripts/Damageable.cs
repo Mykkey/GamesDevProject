@@ -13,23 +13,21 @@ public class Damageable : MonoBehaviour
 
     public PlayerScoreAndStats playerScoreAndStats;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public HealthBarUIScript gameUI;
+
     void Start()
     {
         currentHealth = maxHealth;
         lastInvulnerableTime = Time.time;
+
+        gameUI = GameObject.Find("HealthBarHealth").GetComponent<HealthBarUIScript>();
+        if (gameObject.CompareTag("Player")) gameUI.SetHealth(currentHealth);
 
         GameObject player = GameObject.Find("Player");
         if (player != null)
         {
             playerScoreAndStats = player.GetComponent<PlayerScoreAndStats>();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TakeDamage(float damage)
@@ -41,6 +39,7 @@ public class Damageable : MonoBehaviour
             {
                 Die();
             }
+            if (gameObject.CompareTag("Player")) gameUI.SetHealth(currentHealth);
         }
     }
 

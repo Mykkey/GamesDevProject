@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         lastShootTime = Time.time;
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -97,5 +98,10 @@ public class PlayerController : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Game Over");
+    }
+
+    public void ShowPlayer()
+    {
+        gameObject.SetActive(true);
     }
 }
