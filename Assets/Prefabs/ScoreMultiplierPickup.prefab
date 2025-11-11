@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7086668145367969673}
   - component: {fileID: 4876459726071807299}
   - component: {fileID: 2627922455362057175}
+  - component: {fileID: 135381770092496512}
   m_Layer: 0
   m_Name: ScoreMultiplierPickup
   m_TagString: Untagged
@@ -137,3 +138,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &135381770092496512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806927877029618890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b344f0c0ebe26f944b1311cb76de922f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreMultiplier
