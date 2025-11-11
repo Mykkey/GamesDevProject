@@ -274,7 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8410655da4be2c40bb25368ed27f3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemy: {fileID: 4651936846113903467, guid: 61670c460ca52c3488e115562eec40a3, type: 3}
+  square: {fileID: 4651936846113903467, guid: 61670c460ca52c3488e115562eec40a3, type: 3}
+  diamond: {fileID: 6960356227396777706, guid: 4b0a2b8fcbfaa9947915cb9e110dc004, type: 3}
   minSpawnTime: 1
   maxSpawnTime: 5
 --- !u!4 &408024290
@@ -1381,7 +1382,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1339716a28e3b419aff0ff7f0110d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScoreAndStats
+  level: 1
+  xpToNextLevel: 100
   score: 0
+  scoreMultiplier: 1
+  scoreMultiplierTimeUntilReset: 0
+  isActive: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

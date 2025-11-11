@@ -42,6 +42,7 @@ public class DealDamage : MonoBehaviour
     {
         // Return if colliding with another enemy or another player (don't do damage to own team
         if (other.gameObject.CompareTag(gameObject.tag)) return;
+        if (other.gameObject.CompareTag("Enemy") && this.gameObject.CompareTag("Enemy")) return;
 
         Damageable damageable = other.GetComponent<Damageable>();
         if (damageable != null)

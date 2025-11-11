@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyPathfinding : MonoBehaviour
@@ -12,6 +13,8 @@ public class EnemyPathfinding : MonoBehaviour
     private Vector2 pos;
 
     private Rigidbody2D rb;
+
+    public float distanceToStop = 1f;
 
     void Start()
     {
@@ -28,7 +31,20 @@ public class EnemyPathfinding : MonoBehaviour
     {
         target = player.transform.position;
         pos = transform.position;
-        Vector2 direction = (target - pos).normalized;
-        rb.linearVelocity = direction * moveSpeed * moveMultiplier;
+
+        if (checkDistance(target, pos))
+        {
+            Vector2 direction = (target - pos).normalized;
+            rb.linearVelocity = direction * moveSpeed * moveMultiplier;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    private bool checkDistance(Vector2 target, Vector2 pos)
+    {
+        return Vector2.Distance(target, pos) > distanceToStop;
     }
 }

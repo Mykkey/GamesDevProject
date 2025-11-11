@@ -4,7 +4,10 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject square;
+    public GameObject diamond;
+
+    private GameObject[] enemies = new GameObject[2];
 
     public float minSpawnTime;
     public float maxSpawnTime;
@@ -13,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         SetTimeUntilSpawn();
+        enemies[0] = square;
+        enemies[1] = diamond;
     }
 
     private void Update()
@@ -22,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
         if (timeUntilSpawn <= 0)
         {
             GetSpawnPos();
-            Instantiate(enemy, transform.position, Quaternion.identity);
+            Instantiate(enemies[Random.Range(0,2)], transform.position, Quaternion.identity);
             SetTimeUntilSpawn();
         }
     }
