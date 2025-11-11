@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Damageable : MonoBehaviour
@@ -10,11 +11,19 @@ public class Damageable : MonoBehaviour
     public float invulnerablePeriod = 0.5f;
     public float lastInvulnerableTime;
 
+    public PlayerScoreAndStats playerScoreAndStats;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
         lastInvulnerableTime = Time.time;
+
+        GameObject player = GameObject.Find("Player");
+        if (player != null)
+        {
+            playerScoreAndStats = player.GetComponent<PlayerScoreAndStats>();
+        }
     }
 
     // Update is called once per frame
@@ -44,6 +53,7 @@ public class Damageable : MonoBehaviour
             pc.Respawn();
         } else
         {
+            playerScoreAndStats.AddScore((int)maxHealth);
             Destroy(this.gameObject);
         }
     }
