@@ -8,19 +8,25 @@ public class PlayerScoreAndStats : MonoBehaviour
 
     public int score;
     public float scoreMultiplier = 1;
+    public float scoreMultiplierFromPickup = 0;
     public double scoreMultiplierTimeUntilReset = 0;
     public bool isActive = false;
+    public GameManager gameManager;
+
+    public XpBarUIScript gameUI;
 
 
     private void Start()
     {
         score = 0;
+        gameUI = GameObject.Find("XpBarXp").GetComponent<XpBarUIScript>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void AddScore(int points)
     {
-        score += (int)((points / 10) * scoreMultiplier);
-
+        score += (int)((points / 10) * (scoreMultiplier + scoreMultiplierFromPickup));
+        gameUI.SetXp(score);
     }
 
     private void Update()
@@ -33,15 +39,12 @@ public class PlayerScoreAndStats : MonoBehaviour
     {
         if (score >= xpToNextLevel)
         {
-            ChooseUpgrade();
+            gameManager.ShowUpgradeMenu();
             level += 1;
-            xpToNextLevel = (int) (xpToNextLevel + ((xpToNextLevel * 0.5) * level));
+            xpToNextLevel = (int)(xpToNextLevel + ((xpToNextLevel * 0.5) * level));
+            gameUI.SetMaxXp(xpToNextLevel);
+            gameUI.SetXp(score);
         }
-    }
-
-    private void ChooseUpgrade()
-    {
-        // TODO: Implement upgrade selection logic
     }
 
     private void CheckScorePickup()

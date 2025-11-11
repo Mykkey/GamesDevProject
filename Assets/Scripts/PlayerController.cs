@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public Gun gun;
     private float lastShootTime;
     public float fireRateMultiplier = 1;
+    public float fireRateMuliplierFromPickup = 0;
     public double fireRateDuration = 5;
     public double fireRateReset = 0;
     public bool fireRatePickupActive = false;
@@ -53,7 +54,9 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector2(moveX, moveY).normalized;
 
-        if (Input.GetMouseButton(0) && Time.time >= lastShootTime + (gun.fireRate * fireRateMultiplier))
+        float finalFireRateMultiplier = (fireRateMultiplier - fireRateMuliplierFromPickup) <= 0.3f ? 0.3f : fireRateMultiplier - fireRateMuliplierFromPickup;
+
+        if (Input.GetMouseButton(0) && Time.time >= lastShootTime + (gun.fireRate * finalFireRateMultiplier))
         {
             gun.Fire();
             lastShootTime = Time.time;

@@ -104,4 +104,8 @@ public class Gun : MonoBehaviour
             damagePickupActive = false;
         }
     }
+    public void AddUpgradeDamage()
+    {
+        bullet.GetComponent<Bullet>().damageMultiplierFromPickup += 0.2f;
+    }
 }

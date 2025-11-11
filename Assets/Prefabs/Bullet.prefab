@@ -183,3 +183,4 @@ MonoBehaviour:
   bulletSpeed: 1000
   bulletDamage: 0
   damageMultiplier: 1
+  damageMultiplierFromPickup: 0
