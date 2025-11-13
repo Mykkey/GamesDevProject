@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
             case "HealthUpgrade":
                 if (damageable.currentHealth + 20 <= damageable.maxHealth) damageable.currentHealth += 20;
                 else damageable.currentHealth = damageable.maxHealth;
+                damageable.UpdateUI();
                 break;
             case "ScoreUpgrade":
                 playerScoreAndStats.scoreMultiplierFromPickup += 0.2f;

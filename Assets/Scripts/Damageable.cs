@@ -21,7 +21,7 @@ public class Damageable : MonoBehaviour
         lastInvulnerableTime = Time.time;
 
         gameUI = GameObject.Find("HealthBarHealth").GetComponent<HealthBarUIScript>();
-        if (gameObject.CompareTag("Player")) gameUI.SetHealth(currentHealth);
+        if (gameObject.CompareTag("Player")) UpdateUI();
 
         GameObject player = GameObject.Find("Player");
         if (player != null)
@@ -39,7 +39,7 @@ public class Damageable : MonoBehaviour
             {
                 Die();
             }
-            if (gameObject.CompareTag("Player")) gameUI.SetHealth(currentHealth);
+            if (gameObject.CompareTag("Player")) UpdateUI();
         }
     }
 
@@ -55,5 +55,10 @@ public class Damageable : MonoBehaviour
             playerScoreAndStats.AddScore((int)maxHealth);
             Destroy(this.gameObject);
         }
+    }
+
+    public void UpdateUI()
+    {
+        gameUI.SetHealth(currentHealth);
     }
 }
