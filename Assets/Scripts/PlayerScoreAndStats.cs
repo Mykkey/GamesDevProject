@@ -41,7 +41,7 @@ public class PlayerScoreAndStats : MonoBehaviour
         {
             gameManager.ShowUpgradeMenu();
             level += 1;
-            xpToNextLevel = (int)(xpToNextLevel + ((xpToNextLevel * 0.5) * level));
+            xpToNextLevel = (int)(xpToNextLevel + (xpToNextLevel + (level * 10)));
             gameUI.SetMaxXp(xpToNextLevel);
             gameUI.SetXp(score);
         }
