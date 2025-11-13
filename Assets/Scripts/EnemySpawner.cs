@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
         if (timeUntilSpawn <= 0)
         {
             GetSpawnPos();
-            Instantiate(enemies[Random.Range(0,2)], transform.position, Quaternion.identity);
+            Instantiate(enemies[Random.Range(0, enemies.Length)], transform.position, Quaternion.identity);
             SetTimeUntilSpawn();
         }
     }
