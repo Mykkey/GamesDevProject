@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Canvas startMenu;
     public Canvas ingameUI;
     public Canvas upgradeMenu;
+    public Canvas weaponScreen;
 
     [Header("Upgrade System")]
     public Button moveSpeedUpgrade;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         OpenMenu();
         ingameUI.enabled = false;
         upgradeMenu.enabled = false;
+        weaponScreen.enabled = false;
 
         upgradeButtons = new Button[] {
             moveSpeedUpgrade,
@@ -147,5 +149,41 @@ public class GameManager : MonoBehaviour
         }
 
         CloseUpgradeMenu();
+    }
+
+    public void ShowChooseWeaponScreen()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        ingameUI.enabled = false;
+        upgradeMenu.enabled = false;
+        startMenu.enabled = false;
+        weaponScreen.enabled = true;
+    }
+
+    public void CloseChooseWeaponScreen()
+    {
+        weaponScreen.enabled = false;
+    }
+
+    public void AssaultRifle()
+    {
+        gun.gun = Gun.GunType.AssaultRifle;
+        gun.SetAssaultRifle();
+    }    
+    public void BurstRifle()
+    {
+        gun.gun = Gun.GunType.BurstRifle;
+        gun.SetBurstRifle();
+    }
+    public void Sniper()
+    {
+        gun.gun = Gun.GunType.Sniper;
+        gun.SetSniper();
+    }
+    public void Shotgun()
+    {
+        gun.gun = Gun.GunType.Shotgun;
+        gun.SetShotgun();
     }
 }

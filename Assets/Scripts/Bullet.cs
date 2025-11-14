@@ -4,7 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public Gun gun;
     public Rigidbody2D rb;
-    public float bulletSpeed = 1000f;
+    public float bulletSpeed;
     public float bulletDamage;
     public float damageMultiplier = 1;
     public float damageMultiplierFromPickup = 0;
@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     public void Initialize(Gun gunRef)
     {
         gun = gunRef;
+        bulletSpeed = gun.bulletVelocity;
         bulletDamage = gun.bulletDamage;
     }
     
