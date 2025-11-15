@@ -15,6 +15,9 @@ public class PlayerScoreAndStats : MonoBehaviour
 
     public XpBarUIScript gameUI;
 
+    private int deaths = 0;
+    private int shotsFired = 0;
+    private int enemiesKilled = 0;
 
     private void Start()
     {
@@ -54,5 +57,24 @@ public class PlayerScoreAndStats : MonoBehaviour
             scoreMultiplier -= 1;
             isActive = false;
         }
+    }
+
+
+
+
+
+    // ------------- Stats tracker ------------- //
+
+    public void AddDeath()
+    {
+        deaths++;
+    }
+    public void AddEnemyKilled()
+    {
+        enemiesKilled++;
+    }
+    public void AddShotFired()
+    {
+        shotsFired++;
     }
 }
