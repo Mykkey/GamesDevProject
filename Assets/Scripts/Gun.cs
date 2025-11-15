@@ -153,7 +153,6 @@ public class Gun : MonoBehaviour
             shotgunBullets[i] = bul;
 
             // Make bullets ignore collisions with each other because they are initialised at the same position
-
             for (int j = 0; j < i; j++)
             {
                 if (shotgunBullets[j] != null)
