@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Canvas upgradeMenu;
     public Canvas weaponScreen;
     public Canvas gameOverScreen;
+    public Canvas tutorialScreen;
 
     private TMPro.TMP_Text damageTakenText;
     private TMPro.TMP_Text shotsFiredText;
@@ -60,7 +61,12 @@ public class GameManager : MonoBehaviour
 
     public void OpenMenu()
     {
-        isPaused = true;
+        startMenu.enabled = true;
+        ingameUI.enabled = false;
+        upgradeMenu.enabled = false;
+        weaponScreen.enabled = false;
+        gameOverScreen.enabled = false;
+        tutorialScreen.enabled = false;
         Time.timeScale = 0f;
     }
     public void CloseMenu()
@@ -218,5 +224,17 @@ public class GameManager : MonoBehaviour
         damageTakenText.text = "Damage Taken: " + damageTaken;
         shotsFiredText.text = "Shots Fired: " + shotsFired;
         enemiesKilledText.text = "Enemies Killed: " + enemiesKilled;
+    }
+
+    public void ShowTutorialScreen()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        ingameUI.enabled = false;
+        upgradeMenu.enabled = false;
+        startMenu.enabled = false;
+        weaponScreen.enabled = false;
+        gameOverScreen.enabled = false;
+        tutorialScreen.enabled = true;
     }
 }
