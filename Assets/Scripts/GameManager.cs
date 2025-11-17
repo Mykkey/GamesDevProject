@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -236,5 +237,11 @@ public class GameManager : MonoBehaviour
         weaponScreen.enabled = false;
         gameOverScreen.enabled = false;
         tutorialScreen.enabled = true;
+    }
+
+    public void Restart()
+    {
+        OpenMenu();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
