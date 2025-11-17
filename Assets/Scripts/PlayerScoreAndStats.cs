@@ -15,7 +15,7 @@ public class PlayerScoreAndStats : MonoBehaviour
 
     public XpBarUIScript gameUI;
 
-    private int deaths = 0;
+    private int damageTaken = 0;
     private int shotsFired = 0;
     private int enemiesKilled = 0;
 
@@ -65,9 +65,9 @@ public class PlayerScoreAndStats : MonoBehaviour
 
     // ------------- Stats tracker ------------- //
 
-    public void AddDeath()
+    public void AddDamageTaken(float damage)
     {
-        deaths++;
+        damageTaken += (int) damage;
     }
     public void AddEnemyKilled()
     {

@@ -32,6 +32,7 @@ public class Damageable : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (gameObject.CompareTag("Player")) playerScoreAndStats.AddDamageTaken(damage);
         if (Time.time >= lastInvulnerableTime + invulnerablePeriod) {
             currentHealth -= damage;
             lastInvulnerableTime = Time.time;
