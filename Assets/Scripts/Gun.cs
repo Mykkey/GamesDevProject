@@ -76,7 +76,7 @@ public class Gun : MonoBehaviour
         penetration = 1;
         bulletCount = 5;
         bulletRange = 7.5f;
-        bulletDamage = 20;
+        bulletDamage = 10;
         bulletVelocity = 1000;
     }
     public void SetSniper()
@@ -158,25 +158,28 @@ public class Gun : MonoBehaviour
             Bullet bulScript = bul.GetComponent<Bullet>();
             bulScript.Initialize(this, damageMultiplier + damageMultiplierFromPickup);
 
+            playerScoreAndStats.AddShotFired();
             shotgunBullets[i] = bul;
 
-            // Make bullets ignore collisions with each other because they are initialised at the same position
-            for (int j = 0; j < i; j++)
-            {
-                if (shotgunBullets[j] != null)
-                {
-                    Collider2D bulColldier = bul.GetComponent<Collider2D>();
-                    Collider2D otherBulletCollider = shotgunBullets[j].GetComponent<Collider2D>();
+        }
 
+        // Make bullets ignore collisions with each other because they are initialised at the same position
+        for (int i = 0; i < bulletCount; i++)
+        {
+
+            for (int j = i + 1; j < bulletCount; j++)
+            {
+                if (shotgunBullets[i] != null && shotgunBullets[j] != null)
+                {
+                    Collider2D bulColldier = shotgunBullets[i].GetComponent<Collider2D>();
+                    Collider2D otherBulletCollider = shotgunBullets[j].GetComponent<Collider2D>();
                     if (bulColldier != null && otherBulletCollider != null)
                     {
                         Physics2D.IgnoreCollision(bulColldier, otherBulletCollider);
                     }
                 }
             }
-            playerScoreAndStats.AddShotFired();
         }
-
 
         isFiring = false;
     }

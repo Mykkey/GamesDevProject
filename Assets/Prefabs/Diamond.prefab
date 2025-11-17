@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
   maxHealth: 50
   currentHealth: 0
-  invulnerablePeriod: 0.05
+  invulnerablePeriod: 0
   lastInvulnerableTime: 0
   playerScoreAndStats: {fileID: 0}
   gameUI: {fileID: 0}
