@@ -32,15 +32,19 @@ public class Damageable : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (gameObject.CompareTag("Player")) playerScoreAndStats.AddDamageTaken(damage);
-        if (Time.time >= lastInvulnerableTime + invulnerablePeriod) {
+        if (Time.time >= lastInvulnerableTime + invulnerablePeriod)
+        {
             currentHealth -= damage;
             lastInvulnerableTime = Time.time;
             if (currentHealth <= 0)
             {
                 Die();
             }
-            if (gameObject.CompareTag("Player")) UpdateUI();
+            if (gameObject.CompareTag("Player"))
+            {
+                UpdateUI();
+                playerScoreAndStats.AddDamageTaken(damage);
+            }
         }
     }
 
@@ -51,8 +55,10 @@ public class Damageable : MonoBehaviour
             currentHealth = maxHealth;
             PlayerController pc = GetComponent<PlayerController>();
             pc.Respawn();
-        } else
+        }
+        else
         {
+            playerScoreAndStats.AddEnemyKilled();
             playerScoreAndStats.AddScore((int)maxHealth);
             Destroy(this.gameObject);
         }

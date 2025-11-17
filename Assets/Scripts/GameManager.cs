@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     public Canvas ingameUI;
     public Canvas upgradeMenu;
     public Canvas weaponScreen;
+    public Canvas gameOverScreen;
+
+    private TMPro.TMP_Text damageTakenText;
+    private TMPro.TMP_Text shotsFiredText;
+    private TMPro.TMP_Text enemiesKilledText;
+    private TMPro.TMP_Text scoreText;
 
     [Header("Upgrade System")]
     public Button moveSpeedUpgrade;
@@ -28,10 +34,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        damageTakenText = gameOverScreen.transform.Find("DamageTakenText").GetComponent<TMPro.TMP_Text>();
+        shotsFiredText = gameOverScreen.transform.Find("ShotsFiredText").GetComponent<TMPro.TMP_Text>();
+        enemiesKilledText = gameOverScreen.transform.Find("EnemiesKilledText").GetComponent<TMPro.TMP_Text>();
+        scoreText = gameOverScreen.transform.Find("ScoreText").GetComponent<TMPro.TMP_Text>();
+
+
         OpenMenu();
         ingameUI.enabled = false;
         upgradeMenu.enabled = false;
         weaponScreen.enabled = false;
+        gameOverScreen.enabled = false;
 
         upgradeButtons = new Button[] {
             moveSpeedUpgrade,
@@ -185,5 +198,25 @@ public class GameManager : MonoBehaviour
     {
         gun.gun = Gun.GunType.Shotgun;
         gun.SetShotgun();
+    }
+
+    public void GameOver()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        ingameUI.enabled = false;
+        upgradeMenu.enabled = false;
+        startMenu.enabled = false;
+        weaponScreen.enabled = false;
+        gameOverScreen.enabled = true;
+        UpdateGameOverStats(playerScoreAndStats.damageTaken, playerScoreAndStats.shotsFired, playerScoreAndStats.enemiesKilled, playerScoreAndStats.score);
+    }
+
+    public void UpdateGameOverStats(int damageTaken, int shotsFired, int enemiesKilled, int score)
+    {
+        scoreText.text = "Score: " + score;
+        damageTakenText.text = "Damage Taken: " + damageTaken;
+        shotsFiredText.text = "Shots Fired: " + shotsFired;
+        enemiesKilledText.text = "Enemies Killed: " + enemiesKilled;
     }
 }

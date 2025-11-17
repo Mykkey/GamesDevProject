@@ -15,9 +15,9 @@ public class PlayerScoreAndStats : MonoBehaviour
 
     public XpBarUIScript gameUI;
 
-    private int damageTaken = 0;
-    private int shotsFired = 0;
-    private int enemiesKilled = 0;
+    public int damageTaken = 0;
+    public int shotsFired = 0;
+    public int enemiesKilled = 0;
 
     private void Start()
     {

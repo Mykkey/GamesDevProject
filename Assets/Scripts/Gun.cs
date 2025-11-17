@@ -29,6 +29,11 @@ public class Gun : MonoBehaviour
     public bool damagePickupActive = false;
     public double damagePickupTimeUntilReset = 0;
 
+    public PlayerScoreAndStats playerScoreAndStats;
+
+    public float damageMultiplier = 1;
+    public float damageMultiplierFromPickup = 0;
+
 
     void SetGunType(GunType g)
     {
@@ -80,7 +85,7 @@ public class Gun : MonoBehaviour
         penetration = 100;
         bulletCount = 1;
         bulletRange = 100;
-        bulletDamage = 200;
+        bulletDamage = 100;
         bulletVelocity = 2000;
     }
 
@@ -107,10 +112,11 @@ public class Gun : MonoBehaviour
 
         GameObject bul = Instantiate(bullet, shootPosition.position, shootPosition.rotation);
         Bullet bulScript = bul.GetComponent<Bullet>();
-        bulScript.Initialize(this);
+        bulScript.Initialize(this, damageMultiplier + damageMultiplierFromPickup);
 
         isFiring = false;
         yield return null;
+        playerScoreAndStats.AddShotFired();
     }
 
     private IEnumerator BurstFireRoutine()
@@ -121,7 +127,9 @@ public class Gun : MonoBehaviour
         {
             GameObject bul = Instantiate(bullet, shootPosition.position, shootPosition.rotation);
             Bullet bulScript = bul.GetComponent<Bullet>();
-            bulScript.Initialize(this);
+            bulScript.Initialize(this, damageMultiplier + damageMultiplierFromPickup);
+
+            playerScoreAndStats.AddShotFired();
 
             if (i < bulletCount - 1)
             {
@@ -148,7 +156,7 @@ public class Gun : MonoBehaviour
             Quaternion rotation = shootPosition.rotation * Quaternion.Euler(0, 0, currentAngle);
             GameObject bul = Instantiate(bullet, shootPosition.position, rotation);
             Bullet bulScript = bul.GetComponent<Bullet>();
-            bulScript.Initialize(this);
+            bulScript.Initialize(this, damageMultiplier + damageMultiplierFromPickup);
 
             shotgunBullets[i] = bul;
 
@@ -166,6 +174,7 @@ public class Gun : MonoBehaviour
                     }
                 }
             }
+            playerScoreAndStats.AddShotFired();
         }
 
 
@@ -177,6 +186,12 @@ public class Gun : MonoBehaviour
     {
         gun = GunType.AssaultRifle;
         SetGunType(gun);
+
+        GameObject player = GameObject.Find("Player");
+        if (player != null)
+        {
+            playerScoreAndStats = player.GetComponent<PlayerScoreAndStats>();
+        }
     }
 
     private void Update()
@@ -188,12 +203,12 @@ public class Gun : MonoBehaviour
     {
         if (damagePickupActive == true && Time.time >= damagePickupTimeUntilReset)
         {
-            bullet.GetComponent<Bullet>().damageMultiplier -= 1;
+            damageMultiplier -= 1;
             damagePickupActive = false;
         }
     }
     public void AddUpgradeDamage()
     {
-        bullet.GetComponent<Bullet>().damageMultiplierFromPickup += 0.2f;
+        damageMultiplierFromPickup += 0.2f;
     }
 }

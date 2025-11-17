@@ -13,7 +13,7 @@ public class DamagePickupApplier : MonoBehaviour
     {
         if (Time.time <= timeUntilReset || collision.gameObject.tag != "Player") return;
 
-        bulletScript.damageMultiplier += 1;
+        gunScript.damageMultiplierFromPickup += 1;
         gunScript.damagePickupTimeUntilReset = Time.time + duration;
         gunScript.damagePickupActive = true;
 

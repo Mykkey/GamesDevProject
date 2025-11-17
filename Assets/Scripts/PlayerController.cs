@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private int lives = 3;
     public Damageable damageable;
 
+    public GameManager gameManager;
+
 
     void Start()
     {
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
-        Debug.Log("Game Over");
+        gameManager.GameOver();
     }
 
     public void ShowPlayer()
