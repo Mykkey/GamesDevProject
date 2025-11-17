@@ -36,14 +36,14 @@ public class Damageable : MonoBehaviour
         {
             currentHealth -= damage;
             lastInvulnerableTime = Time.time;
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
             if (gameObject.CompareTag("Player"))
             {
                 UpdateUI();
                 playerScoreAndStats.AddDamageTaken(damage);
+            }
+            if (currentHealth <= 0)
+            {
+                Die();
             }
         }
     }

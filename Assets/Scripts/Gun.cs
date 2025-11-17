@@ -72,16 +72,16 @@ public class Gun : MonoBehaviour
     }
     public void SetShotgun()
     {
-        fireRate = 1;
+        fireRate = 2;
         penetration = 1;
         bulletCount = 5;
         bulletRange = 7.5f;
-        bulletDamage = 50;
+        bulletDamage = 20;
         bulletVelocity = 1000;
     }
     public void SetSniper()
     {
-        fireRate = 1;
+        fireRate = 3;
         penetration = 100;
         bulletCount = 1;
         bulletRange = 100;

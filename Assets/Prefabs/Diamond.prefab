@@ -198,11 +198,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d99da58d56e53943864f58b003ec4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 30
+  maxHealth: 50
   currentHealth: 0
   invulnerablePeriod: 0.05
   lastInvulnerableTime: 0
   playerScoreAndStats: {fileID: 0}
+  gameUI: {fileID: 0}
 --- !u!114 &2612947601367438426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemyAttack
   bullet: {fileID: 5960309601985702955, guid: 0ca694e92422a80408aaf33a29d19a65, type: 3}
+  fireRate: 2.5
 --- !u!114 &2926315230866035552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +231,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBullet
   bulletSpeed: 1000
-  bulletDamage: 10
+  bulletDamage: 5
+  damageable: {fileID: 0}
 --- !u!1 &7532498372832496324
 GameObject:
   m_ObjectHideFlags: 0

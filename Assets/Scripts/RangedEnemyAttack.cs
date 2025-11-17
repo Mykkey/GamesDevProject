@@ -6,7 +6,7 @@ public class RangedEnemyAttack : MonoBehaviour
     public GameObject bullet;
 
     private double lastFireTime = 0;
-    private double fireRate = 1.5f;
+    public double fireRate = 2.5f;
 
     private void Start()
     {

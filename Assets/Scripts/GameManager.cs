@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
         startMenu.enabled = false;
         weaponScreen.enabled = false;
         gameOverScreen.enabled = true;
-        UpdateGameOverStats(playerScoreAndStats.damageTaken, playerScoreAndStats.shotsFired, playerScoreAndStats.enemiesKilled, playerScoreAndStats.score);
+        UpdateGameOverStats(playerScoreAndStats.damageTaken < 300 ? 300 : playerScoreAndStats.damageTaken, playerScoreAndStats.shotsFired, playerScoreAndStats.enemiesKilled, playerScoreAndStats.score);
     }
 
     public void UpdateGameOverStats(int damageTaken, int shotsFired, int enemiesKilled, int score)

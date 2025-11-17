@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf6208f74e655847a9684197085c4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DealDamage
-  damage: 10
+  damage: 5
   damageMultiplier: 1
 --- !u!114 &7253017923178605913
 MonoBehaviour:
@@ -194,11 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d99da58d56e53943864f58b003ec4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 100
+  maxHealth: 75
   currentHealth: 0
   invulnerablePeriod: 0.05
   lastInvulnerableTime: 0
   playerScoreAndStats: {fileID: 0}
+  gameUI: {fileID: 0}
 --- !u!114 &5176895023185688605
 MonoBehaviour:
   m_ObjectHideFlags: 0
