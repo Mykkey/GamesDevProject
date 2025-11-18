@@ -7,12 +7,15 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed;
     public float bulletDamage;
     private float damageMultiplier;
+    public int bulletPenetration;
+    private int penetrations = 0;
 
     public void Initialize(Gun gunRef, float dmgMult)
     {
         gun = gunRef;
         bulletSpeed = gun.bulletVelocity;
         bulletDamage = gun.bulletDamage;
+        bulletPenetration = gun.penetration;
         damageMultiplier = dmgMult;
     }
     
@@ -21,10 +24,12 @@ public class Bullet : MonoBehaviour
         rb.AddForce(transform.up * bulletSpeed);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         Damageable damageable = collision.gameObject.GetComponent<Damageable>();
         if (damageable != null) damageable.TakeDamage(bulletDamage * damageMultiplier);
-        Destroy(this.gameObject);
+
+        penetrations++;
+        if (penetrations >= bulletPenetration) Destroy(this.gameObject);
     }
 }

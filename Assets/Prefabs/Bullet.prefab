@@ -123,7 +123,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -182,5 +182,4 @@ MonoBehaviour:
   rb: {fileID: 6218211214655215095}
   bulletSpeed: 1000
   bulletDamage: 0
-  damageMultiplier: 1
-  damageMultiplierFromPickup: 0
+  bulletPenetration: 0
