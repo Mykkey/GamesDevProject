@@ -28,13 +28,19 @@ public class PlayerController : MonoBehaviour
 
     public GameManager gameManager;
 
+    public Canvas ingameui;
+    public DisplayActivePickups displayActivePickups;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         lastShootTime = Time.time;
+        ingameui = GameObject.Find("InGameUI").GetComponent<Canvas>();
+        displayActivePickups = ingameui.GetComponent<DisplayActivePickups>();
         gameObject.SetActive(false);
+
     }
 
     void Update()
@@ -78,6 +84,8 @@ public class PlayerController : MonoBehaviour
         {
             fireRateMultiplier += 0.5f;
             fireRatePickupActive = false;
+
+            displayActivePickups.HideFireRatePickupIcon();
         }
     }
     void LookAtMouse()

@@ -15,6 +15,9 @@ public class PlayerScoreAndStats : MonoBehaviour
 
     public XpBarUIScript gameUI;
 
+    public Canvas ingameui;
+    public DisplayActivePickups displayActivePickups;
+
     public int damageTaken = 0;
     public int shotsFired = 0;
     public int enemiesKilled = 0;
@@ -24,6 +27,9 @@ public class PlayerScoreAndStats : MonoBehaviour
         score = 0;
         gameUI = GameObject.Find("XpBarXp").GetComponent<XpBarUIScript>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        ingameui = GameObject.Find("InGameUI").GetComponent<Canvas>();
+        displayActivePickups = ingameui.GetComponent<DisplayActivePickups>();
     }
 
     public void AddScore(int points)
@@ -56,6 +62,8 @@ public class PlayerScoreAndStats : MonoBehaviour
         {
             scoreMultiplier -= 1;
             isActive = false;
+
+            displayActivePickups.HideScorePickupIcon();
         }
     }
 

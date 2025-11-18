@@ -34,6 +34,29 @@ public class Gun : MonoBehaviour
     public float damageMultiplier = 1;
     public float damageMultiplierFromPickup = 0;
 
+    public Canvas ingameui;
+    public DisplayActivePickups displayActivePickups;
+
+    void Start()
+    {
+        gun = GunType.AssaultRifle;
+        SetGunType(gun);
+
+        GameObject player = GameObject.Find("Player");
+        if (player != null)
+        {
+            playerScoreAndStats = player.GetComponent<PlayerScoreAndStats>();
+        }
+
+        ingameui = GameObject.Find("InGameUI").GetComponent<Canvas>();
+        displayActivePickups = ingameui.GetComponent<DisplayActivePickups>();
+    }
+
+    private void Update()
+    {
+        CheckDamagePickup();
+    }
+
 
     void SetGunType(GunType g)
     {
@@ -184,30 +207,13 @@ public class Gun : MonoBehaviour
         isFiring = false;
     }
 
-
-    void Start()
-    {
-        gun = GunType.AssaultRifle;
-        SetGunType(gun);
-
-        GameObject player = GameObject.Find("Player");
-        if (player != null)
-        {
-            playerScoreAndStats = player.GetComponent<PlayerScoreAndStats>();
-        }
-    }
-
-    private void Update()
-    {
-        CheckDamagePickup();
-    }
-
     private void CheckDamagePickup()
     {
         if (damagePickupActive == true && Time.time >= damagePickupTimeUntilReset)
         {
             damageMultiplier -= 1;
             damagePickupActive = false;
+            displayActivePickups.HideDamagePickupIcon();
         }
     }
     public void AddUpgradeDamage()

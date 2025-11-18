@@ -8,12 +8,17 @@ public class FireRateMultiplier : MonoBehaviour
     double timeUntilReset = 0;
     double duration = 5;
 
+    public Canvas ingameui;
+    public DisplayActivePickups displayActivePickups;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (Time.time <= timeUntilReset || collision.gameObject.tag != "Player" || isActive) return;
         playerController.fireRateMultiplier -= 0.5f;
         playerController.fireRateReset = Time.time + duration;
         playerController.fireRatePickupActive = true;
+
+        displayActivePickups.DisplayFireRatePickupIcon();
 
         Destroy(this.gameObject);
     }
@@ -23,6 +28,8 @@ public class FireRateMultiplier : MonoBehaviour
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         isActive = playerController.fireRatePickupActive;
+        ingameui = GameObject.Find("InGameUI").GetComponent<Canvas>();
+        displayActivePickups = ingameui.GetComponent<DisplayActivePickups>();
     }
 
     private void Update()

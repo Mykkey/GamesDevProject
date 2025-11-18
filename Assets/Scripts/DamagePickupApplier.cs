@@ -8,6 +8,8 @@ public class DamagePickupApplier : MonoBehaviour
     double duration = 5;
     public GameObject player;
     private Gun gunScript;
+    public Canvas ingameui;
+    public DisplayActivePickups displayActivePickups;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +18,8 @@ public class DamagePickupApplier : MonoBehaviour
         gunScript.damageMultiplierFromPickup += 1;
         gunScript.damagePickupTimeUntilReset = Time.time + duration;
         gunScript.damagePickupActive = true;
+
+        displayActivePickups.DisplayDamagePickupIcon();
 
         Destroy(this.gameObject);
 
@@ -26,5 +30,7 @@ public class DamagePickupApplier : MonoBehaviour
         player = GameObject.Find("Player");
         gunScript = player.GetComponent<Gun>();
         bulletScript = bullet.GetComponent<Bullet>();
+        ingameui = GameObject.Find("InGameUI").GetComponent<Canvas>();
+        displayActivePickups = ingameui.GetComponent<DisplayActivePickups>();
     }
 }
