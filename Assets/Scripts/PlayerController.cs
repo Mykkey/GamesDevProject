@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = new Vector2(moveX, moveY).normalized;
 
-        float finalFireRateMultiplier = (fireRateMultiplier - fireRateMuliplierFromPickup) <= 0.3f ? 0.3f : fireRateMultiplier - fireRateMuliplierFromPickup;
+        float finalFireRateMultiplier = (fireRateMultiplier - fireRateMuliplierFromPickup) <= 0.15f ? 0.15f : fireRateMultiplier - fireRateMuliplierFromPickup;
 
         if (Input.GetMouseButton(0) && Time.time >= lastShootTime + (gun.fireRate * finalFireRateMultiplier))
         {

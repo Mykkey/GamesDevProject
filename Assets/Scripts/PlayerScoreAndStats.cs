@@ -13,6 +13,7 @@ public class PlayerScoreAndStats : MonoBehaviour
     public double scoreMultiplierTimeUntilReset = 0;
     public bool isActive = false;
     public GameManager gameManager;
+    public EnemySpawner enemySpawner;
 
     public XpBarUIScript gameUI;
 
@@ -56,6 +57,7 @@ public class PlayerScoreAndStats : MonoBehaviour
             CalculateXpToNextLevel();
             gameUI.SetMaxXp(xpToNextLevel);
             gameUI.SetXp(score);
+            enemySpawner.GetPlayerLevel();
         }
     }
 

@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void GetPlayerLevel()
+    public void GetPlayerLevel()
     {
         level = GameObject.Find("Player").GetComponent<PlayerScoreAndStats>().level;
     }

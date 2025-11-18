@@ -95,7 +95,7 @@ public class Gun : MonoBehaviour
     }
     public void SetShotgun()
     {
-        fireRate = 2;
+        fireRate = 1.5f;
         penetration = 1;
         bulletCount = 5;
         bulletRange = 7.5f;
