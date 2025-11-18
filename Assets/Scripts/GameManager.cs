@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,12 +8,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private bool isPaused = true;
+    private bool gameIsPaused = false;
     public Canvas startMenu;
     public Canvas ingameUI;
     public Canvas upgradeMenu;
     public Canvas weaponScreen;
     public Canvas gameOverScreen;
     public Canvas tutorialScreen;
+    public Canvas pauseScreen;
+    public Canvas countdownScreen;
 
     private TMPro.TMP_Text damageTakenText;
     private TMPro.TMP_Text shotsFiredText;
@@ -34,6 +39,9 @@ public class GameManager : MonoBehaviour
     public Damageable damageable;           // For health
     public PlayerScoreAndStats playerScoreAndStats; // For score
 
+
+    private int seconds = 3;
+
     private void Start()
     {
         damageTakenText = gameOverScreen.transform.Find("DamageTakenText").GetComponent<TMPro.TMP_Text>();
@@ -41,12 +49,8 @@ public class GameManager : MonoBehaviour
         enemiesKilledText = gameOverScreen.transform.Find("EnemiesKilledText").GetComponent<TMPro.TMP_Text>();
         scoreText = gameOverScreen.transform.Find("ScoreText").GetComponent<TMPro.TMP_Text>();
 
-
+        DeactivateAllCanvases();
         OpenMenu();
-        ingameUI.enabled = false;
-        upgradeMenu.enabled = false;
-        weaponScreen.enabled = false;
-        gameOverScreen.enabled = false;
 
         upgradeButtons = new Button[] {
             moveSpeedUpgrade,
@@ -58,6 +62,61 @@ public class GameManager : MonoBehaviour
         };
 
         chosenButtons = new Button[3];
+    }
+
+    private void Update()
+    {
+        CheckForPause();
+    }
+
+    private void CheckForPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameIsPaused)
+        {
+            PauseGame();
+        } else if (Input.GetKeyDown(KeyCode.Escape) && gameIsPaused)
+        {
+            UnpauseGame();
+        }
+    }
+
+    private void PauseGame()
+    {
+        DeactivateAllCanvases();
+        ingameUI.enabled = true;
+        pauseScreen.enabled = true;
+        Time.timeScale = 0f;
+        gameIsPaused = true;
+    }
+
+    private void UnpauseGame()
+    {
+        DeactivateAllCanvases();
+        ingameUI.enabled = true;
+        countdownScreen.enabled = true;
+        Time.timeScale = 0f;
+        StartCoroutine(UnpauseCountdown());
+    }
+
+    private IEnumerator UnpauseCountdown()
+    {
+        TMP_Text countdownText = countdownScreen.GetComponentInChildren<TMP_Text>();
+        while (seconds > 0)
+        {
+            if (countdownText != null) countdownText.text = seconds.ToString();
+            yield return new WaitForSecondsRealtime(1);
+            seconds--;
+        }
+        ResumeGameAfterCountdown();
+    }
+
+    private void ResumeGameAfterCountdown()
+    {
+        DeactivateAllCanvases();
+        ingameUI.enabled = true;
+        Time.timeScale = 1.0f;
+        seconds = 3;
+        gameIsPaused = false;
     }
 
     public void OpenMenu()
@@ -211,10 +270,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = true;
         Time.timeScale = 0f;
-        ingameUI.enabled = false;
-        upgradeMenu.enabled = false;
-        startMenu.enabled = false;
-        weaponScreen.enabled = false;
+        DeactivateAllCanvases();
         gameOverScreen.enabled = true;
         UpdateGameOverStats(playerScoreAndStats.damageTaken < 300 ? 300 : playerScoreAndStats.damageTaken, playerScoreAndStats.shotsFired, playerScoreAndStats.enemiesKilled, playerScoreAndStats.score);
     }
@@ -231,11 +287,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = true;
         Time.timeScale = 0f;
-        ingameUI.enabled = false;
-        upgradeMenu.enabled = false;
-        startMenu.enabled = false;
-        weaponScreen.enabled = false;
-        gameOverScreen.enabled = false;
+        DeactivateAllCanvases();
         tutorialScreen.enabled = true;
     }
 
@@ -243,5 +295,22 @@ public class GameManager : MonoBehaviour
     {
         OpenMenu();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void DeactivateAllCanvases()
+    {
+        startMenu.enabled = false;
+        ingameUI.enabled = false;
+        upgradeMenu.enabled = false;
+        weaponScreen.enabled = false;
+        gameOverScreen.enabled = false;
+        tutorialScreen.enabled = false;
+        pauseScreen.enabled = false;
+        countdownScreen.enabled = false;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

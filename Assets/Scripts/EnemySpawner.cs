@@ -6,8 +6,9 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject square;
     public GameObject diamond;
+    public GameObject triangle;
 
-    private GameObject[] enemies = new GameObject[2];
+    private GameObject[] enemies = new GameObject[3];
 
     public float minSpawnTime;
     public float maxSpawnTime;
@@ -18,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
         SetTimeUntilSpawn();
         enemies[0] = square;
         enemies[1] = diamond;
+        enemies[2] = triangle;
     }
 
     private void Update()
