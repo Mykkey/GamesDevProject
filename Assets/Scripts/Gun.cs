@@ -104,11 +104,11 @@ public class Gun : MonoBehaviour
     }
     public void SetSniper()
     {
-        fireRate = 3;
+        fireRate = 1.5f;
         penetration = 100;
         bulletCount = 1;
         bulletRange = 100;
-        bulletDamage = 100;
+        bulletDamage = 50;
         bulletVelocity = 2000;
     }
 

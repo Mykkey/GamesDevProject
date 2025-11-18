@@ -30,6 +30,13 @@ public class Bullet : MonoBehaviour
         if (damageable != null) damageable.TakeDamage(bulletDamage * damageMultiplier);
 
         penetrations++;
-        if (penetrations >= bulletPenetration) Destroy(this.gameObject);
+        if (penetrations >= bulletPenetration || collision.gameObject.CompareTag("Wall") || IsOutOfBounds()) Destroy(this.gameObject);
+    }
+
+    private bool IsOutOfBounds()
+    {
+        float x = transform.position.x;
+        float y = transform.position.y;
+        return (x < -120 || x > 120 || y < -60 || y > 60);
     }
 }
