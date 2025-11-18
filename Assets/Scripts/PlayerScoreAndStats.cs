@@ -63,7 +63,7 @@ public class PlayerScoreAndStats : MonoBehaviour
 
     private void CalculateXpToNextLevel()
     {
-        xpToNextLevel = xpToNextLevel + 100 + (10 * level);
+        xpToNextLevel = xpToNextLevel + (xpToNextLevel / 2);
     }
 
     private void CheckScorePickup()

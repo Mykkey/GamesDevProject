@@ -12759,6 +12759,7 @@ MonoBehaviour:
   scoreMultiplierTimeUntilReset: 0
   isActive: 0
   gameManager: {fileID: 1447696091}
+  enemySpawner: {fileID: 408024289}
   gameUI: {fileID: 0}
   ingameui: {fileID: 0}
   displayActivePickups: {fileID: 0}
