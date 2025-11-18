@@ -15,6 +15,8 @@ public class Damageable : MonoBehaviour
 
     public HealthBarUIScript gameUI;
 
+    public UpdateEnemyHealthBar enemyHealthBar;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -22,6 +24,7 @@ public class Damageable : MonoBehaviour
 
         gameUI = GameObject.Find("HealthBarHealth").GetComponent<HealthBarUIScript>();
         if (gameObject.CompareTag("Player")) UpdateUI();
+        else if (gameObject.CompareTag("Enemy")) enemyHealthBar = GetComponentInChildren<UpdateEnemyHealthBar>();
 
         GameObject player = GameObject.Find("Player");
         if (player != null)
@@ -40,6 +43,10 @@ public class Damageable : MonoBehaviour
             {
                 UpdateUI();
                 playerScoreAndStats.AddDamageTaken(damage);
+            } else if (gameObject.CompareTag("Enemy"))
+            {
+                enemyHealthBar.setHealth(enemyHealthBar.getHealth() - damage);
+                enemyHealthBar.UpdateHealthBar();
             }
             if (currentHealth <= 0)
             {
