@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 50
   m_Sprite: {fileID: -8060826887723910352, guid: ebe20aa8a2d6e0d4ea94a0bc92cca50f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,3 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b344f0c0ebe26f944b1311cb76de922f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreMultiplier
+  ingameui: {fileID: 0}
+  displayActivePickups: {fileID: 0}

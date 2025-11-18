@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class PlayerScoreAndStats : MonoBehaviour
@@ -36,6 +37,8 @@ public class PlayerScoreAndStats : MonoBehaviour
     {
         score += (int)((points / 10) * (scoreMultiplier + scoreMultiplierFromPickup));
         gameUI.SetXp(score);
+        TMP_Text scoreText = ingameui.transform.Find("Score").GetComponent<TMP_Text>();
+        scoreText.text = "Score: " + score.ToString();
     }
 
     private void Update()
@@ -50,10 +53,15 @@ public class PlayerScoreAndStats : MonoBehaviour
         {
             gameManager.ShowUpgradeMenu();
             level += 1;
-            xpToNextLevel = (int)(xpToNextLevel + (xpToNextLevel + (level * 10)));
+            CalculateXpToNextLevel();
             gameUI.SetMaxXp(xpToNextLevel);
             gameUI.SetXp(score);
         }
+    }
+
+    private void CalculateXpToNextLevel()
+    {
+        xpToNextLevel = xpToNextLevel + 100 + (10 * level);
     }
 
     private void CheckScorePickup()

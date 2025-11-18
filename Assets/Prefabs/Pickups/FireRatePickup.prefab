@@ -80,8 +80,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
-  m_Sprite: {fileID: -649209935439756323, guid: 8b9060cc9e0af844791a101be9a404a1, type: 3}
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 4428941702950268011, guid: a21c70fda67ff8b478f5b75e1bceeb30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,3 +151,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireRateMultiplier
   player: {fileID: 0}
+  ingameui: {fileID: 0}
+  displayActivePickups: {fileID: 0}

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private bool isPaused = true;
     private bool gameIsPaused = false;
     public Canvas startMenu;
     public Canvas ingameUI;
@@ -18,10 +17,12 @@ public class GameManager : MonoBehaviour
     public Canvas pauseScreen;
     public Canvas countdownScreen;
 
-    private TMPro.TMP_Text damageTakenText;
-    private TMPro.TMP_Text shotsFiredText;
-    private TMPro.TMP_Text enemiesKilledText;
-    private TMPro.TMP_Text scoreText;
+    private TMP_Text damageTakenText;
+    private TMP_Text shotsFiredText;
+    private TMP_Text enemiesKilledText;
+    private TMP_Text scoreText;
+
+    private TMP_Text livesText;
 
     [Header("Upgrade System")]
     public Button moveSpeedUpgrade;
@@ -44,10 +45,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        damageTakenText = gameOverScreen.transform.Find("DamageTakenText").GetComponent<TMPro.TMP_Text>();
-        shotsFiredText = gameOverScreen.transform.Find("ShotsFiredText").GetComponent<TMPro.TMP_Text>();
-        enemiesKilledText = gameOverScreen.transform.Find("EnemiesKilledText").GetComponent<TMPro.TMP_Text>();
-        scoreText = gameOverScreen.transform.Find("ScoreText").GetComponent<TMPro.TMP_Text>();
+        damageTakenText = gameOverScreen.transform.Find("DamageTakenText").GetComponent<TMP_Text>();
+        shotsFiredText = gameOverScreen.transform.Find("ShotsFiredText").GetComponent<TMP_Text>();
+        enemiesKilledText = gameOverScreen.transform.Find("EnemiesKilledText").GetComponent<TMP_Text>();
+        scoreText = gameOverScreen.transform.Find("ScoreText").GetComponent<TMP_Text>();
+        livesText = ingameUI.transform.Find("Lives").GetComponent<TMP_Text>();
 
         DeactivateAllCanvases();
         OpenMenu();
@@ -131,13 +133,11 @@ public class GameManager : MonoBehaviour
     }
     public void CloseMenu()
     {
-        isPaused = false;
         Time.timeScale = 1f;
     }
 
     public void CloseStartMenu()
     {
-        isPaused = false;
         Time.timeScale = 1f;
         startMenu.enabled = false;
         ingameUI.enabled = true;
@@ -232,7 +232,6 @@ public class GameManager : MonoBehaviour
 
     public void ShowChooseWeaponScreen()
     {
-        isPaused = true;
         Time.timeScale = 0f;
         ingameUI.enabled = false;
         upgradeMenu.enabled = false;
@@ -268,7 +267,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        isPaused = true;
         Time.timeScale = 0f;
         DeactivateAllCanvases();
         gameOverScreen.enabled = true;
@@ -285,7 +283,6 @@ public class GameManager : MonoBehaviour
 
     public void ShowTutorialScreen()
     {
-        isPaused = true;
         Time.timeScale = 0f;
         DeactivateAllCanvases();
         tutorialScreen.enabled = true;
@@ -307,6 +304,11 @@ public class GameManager : MonoBehaviour
         tutorialScreen.enabled = false;
         pauseScreen.enabled = false;
         countdownScreen.enabled = false;
+    }
+
+    public void UpdateLivesCount(int lives)
+    {
+        livesText.text = "Lives: " + lives.ToString();
     }
 
     public void Quit()

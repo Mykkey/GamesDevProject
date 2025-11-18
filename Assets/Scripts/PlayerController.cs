@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -99,12 +100,14 @@ public class PlayerController : MonoBehaviour
     public void Respawn()
     {
         lives -= 1;
+        gameManager.UpdateLivesCount(lives);
         if (lives <= 0)
         {
             GameOver();
         } else
         {
             transform.position = Vector2.zero;
+            damageable.UpdateUI();
         }
     }
 

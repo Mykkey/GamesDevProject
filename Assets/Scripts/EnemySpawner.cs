@@ -14,12 +14,21 @@ public class EnemySpawner : MonoBehaviour
     public float maxSpawnTime;
     private float timeUntilSpawn;
 
+    private float level;
+
     private void Awake()
     {
-        SetTimeUntilSpawn();
         enemies[0] = square;
         enemies[1] = diamond;
         enemies[2] = triangle;
+    }
+
+    private void Start()
+    {
+        GetPlayerLevel();
+        minSpawnTime = 2;
+        maxSpawnTime = 4;
+        SetTimeUntilSpawn();
     }
 
     private void Update()
@@ -32,6 +41,11 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemies[Random.Range(0, enemies.Length)], transform.position, Quaternion.identity);
             SetTimeUntilSpawn();
         }
+    }
+
+    private void GetPlayerLevel()
+    {
+        level = GameObject.Find("Player").GetComponent<PlayerScoreAndStats>().level;
     }
 
     private void GetSpawnPos()
@@ -56,6 +70,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetTimeUntilSpawn()
     {
-        timeUntilSpawn = Random.Range(minSpawnTime, maxSpawnTime);
+        timeUntilSpawn = Random.Range(minSpawnTime / level, maxSpawnTime / level);
     }
 }

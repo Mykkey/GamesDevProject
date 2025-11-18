@@ -10,9 +10,9 @@ public class DisplayActivePickups : MonoBehaviour
     public bool isFireRatePickupActive = false;
     public bool isScorePickupActive = false;
 
-    private Vector3 firstPosition = new Vector3(-400, 120, 0);
-    private int iconYSpacing = -60;
-    Vector3 offscreenPosition = new Vector3(-1000, -1000, 0);
+    private Vector3 firstPosition = new Vector3(-880, 320, 0);
+    private int iconYSpacing = -120;
+    Vector3 offscreenPosition = new Vector3(-2000, -2000, 0);
 
     private void Start()
     {

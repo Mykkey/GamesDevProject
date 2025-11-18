@@ -80,8 +80,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
-  m_Sprite: {fileID: -4638322314170278651, guid: 578dd7c225626274796a94eb80b31b7d, type: 3}
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 8952103535966097700, guid: faa1c218bc3d3ae49b4d8b37c79c8e0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,3 +152,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamagePickupApplier
   bullet: {fileID: 5960309601985702955, guid: 828f6722243e8e24c829291b667ff4da, type: 3}
   player: {fileID: 0}
+  ingameui: {fileID: 0}
+  displayActivePickups: {fileID: 0}
