@@ -154,3 +154,4 @@ MonoBehaviour:
   player: {fileID: 0}
   ingameui: {fileID: 0}
   displayActivePickups: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 39d92b0b1b1a35d4bb0a63c9209237f2, type: 3}

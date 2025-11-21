@@ -17,6 +17,8 @@ public class Damageable : MonoBehaviour
 
     public UpdateEnemyHealthBar enemyHealthBar;
 
+    public AudioClip playerHurt;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -43,7 +45,9 @@ public class Damageable : MonoBehaviour
             {
                 UpdateUI();
                 playerScoreAndStats.AddDamageTaken(damage);
-            } else if (gameObject.CompareTag("Enemy"))
+                AudioManager.instance.PlaySound(playerHurt, this.transform, 0.5f);
+            }
+            else if (gameObject.CompareTag("Enemy"))
             {
                 enemyHealthBar.setHealth(enemyHealthBar.getHealth() - damage);
                 enemyHealthBar.UpdateHealthBar();

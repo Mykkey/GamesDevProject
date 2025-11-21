@@ -24,6 +24,8 @@ public class PlayerScoreAndStats : MonoBehaviour
     public int shotsFired = 0;
     public int enemiesKilled = 0;
 
+    public AudioClip levelUpSound;
+
     private void Start()
     {
         score = 0;
@@ -53,6 +55,7 @@ public class PlayerScoreAndStats : MonoBehaviour
         if (score >= xpToNextLevel)
         {
             gameManager.ShowUpgradeMenu();
+            AudioManager.instance.PlaySound(levelUpSound, this.transform, 0.5f);
             level += 1;
             CalculateXpToNextLevel();
             gameUI.SetMaxXp(xpToNextLevel);

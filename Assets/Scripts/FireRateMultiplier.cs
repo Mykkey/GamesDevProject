@@ -11,12 +11,16 @@ public class FireRateMultiplier : MonoBehaviour
     public Canvas ingameui;
     public DisplayActivePickups displayActivePickups;
 
+    public AudioClip pickupSound;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (Time.time <= timeUntilReset || collision.gameObject.tag != "Player" || isActive) return;
         playerController.fireRateMultiplier -= 0.5f;
         playerController.fireRateReset = Time.time + duration;
         playerController.fireRatePickupActive = true;
+
+        AudioManager.instance.PlaySound(pickupSound, this.transform, 0.5f);
 
         displayActivePickups.DisplayFireRatePickupIcon();
 

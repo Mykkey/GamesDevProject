@@ -11,6 +11,8 @@ public class DamagePickupApplier : MonoBehaviour
     public Canvas ingameui;
     public DisplayActivePickups displayActivePickups;
 
+    public AudioClip pickupSound;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (Time.time <= timeUntilReset || collision.gameObject.tag != "Player") return;
@@ -18,6 +20,8 @@ public class DamagePickupApplier : MonoBehaviour
         gunScript.damageMultiplierFromPickup += 1;
         gunScript.damagePickupTimeUntilReset = Time.time + duration;
         gunScript.damagePickupActive = true;
+
+        AudioManager.instance.PlaySound(pickupSound, this.transform, 0.5f);
 
         displayActivePickups.DisplayDamagePickupIcon();
 

@@ -9,6 +9,8 @@ public class ScoreMultiplier : MonoBehaviour
     public Canvas ingameui;
     public DisplayActivePickups displayActivePickups;
 
+    public AudioClip pickupSound;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (Time.time <= timeUntilReset || collision.gameObject.tag != "Player") return;
@@ -16,6 +18,8 @@ public class ScoreMultiplier : MonoBehaviour
         playerScoreAndStats.scoreMultiplier += 1;
         playerScoreAndStats.scoreMultiplierTimeUntilReset = Time.time + duration;
         playerScoreAndStats.isActive = true;
+
+        AudioManager.instance.PlaySound(pickupSound, this.transform, 0.5f);
 
         displayActivePickups.DisplayScorePickupIcon();
 

@@ -37,6 +37,8 @@ public class Gun : MonoBehaviour
     public Canvas ingameui;
     public DisplayActivePickups displayActivePickups;
 
+    public AudioClip shootSound;
+
     void Start()
     {
         gun = GunType.AssaultRifle;
@@ -137,6 +139,8 @@ public class Gun : MonoBehaviour
         Bullet bulScript = bul.GetComponent<Bullet>();
         bulScript.Initialize(this, damageMultiplier + damageMultiplierFromPickup);
 
+        AudioManager.instance.PlaySound(shootSound, shootPosition, 0.5f);
+
         isFiring = false;
         yield return null;
         playerScoreAndStats.AddShotFired();
@@ -153,6 +157,8 @@ public class Gun : MonoBehaviour
             bulScript.Initialize(this, damageMultiplier + damageMultiplierFromPickup);
 
             playerScoreAndStats.AddShotFired();
+
+            AudioManager.instance.PlaySound(shootSound, shootPosition, 0.5f);
 
             if (i < bulletCount - 1)
             {
@@ -172,6 +178,8 @@ public class Gun : MonoBehaviour
         float spreadAngle = 30f;
         float angleStep = spreadAngle / (bulletCount - 1);
         float startingAngle = -spreadAngle / 2;
+
+        AudioManager.instance.PlaySound(shootSound, shootPosition, 0.5f);
 
         for (int i = 0; i < bulletCount; i++)
         {
