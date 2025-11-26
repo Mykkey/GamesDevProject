@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     public Damageable damageable;           // For health
     public PlayerScoreAndStats playerScoreAndStats; // For score
 
-
     private int seconds = 3;
 
     private void Start()

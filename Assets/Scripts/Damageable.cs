@@ -19,6 +19,8 @@ public class Damageable : MonoBehaviour
 
     public AudioClip playerHurt;
 
+    public ScreenEffectManagerScript screenEffectManager;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -46,6 +48,7 @@ public class Damageable : MonoBehaviour
                 UpdateUI();
                 playerScoreAndStats.AddDamageTaken(damage);
                 AudioManager.instance.PlaySound(playerHurt, this.transform, 0.5f);
+                screenEffectManager.ApplyHitEffect();
             }
             else if (gameObject.CompareTag("Enemy"))
             {
